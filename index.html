@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WeatherApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Weather App</title>
+	<meta charset="utf-8" name="Bahman Sadiq">
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+	<!-- endbower -->
+
+	<!-- inject:css -->
+	<link rel="stylesheet" href="/app/style/styles.css">
+	<!-- endinject -->
+</head>
+
+       <!-- API Key:    fcca439ecf0705c2b791e1324b9d9827  
+       					api.openweathermap.org/data/2.5/weather?q={city name},{country code}
+       					api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}
+       					api.openweathermap.org/data/2.5/forecast/city?id=524901&APPID=1111111111 
+
+       				-->
+<body ng-controller="WeatherController as vm">
+     <div class="container  ng-cloak">
+     	<div class="col-md-12 jumbotron">
+     		<h1> Origin Weather App</h1>
+     		<p>Always know if you need an umbrella!</p>
+     	</div>
+     	<div class="">
+     		<div class="btn-group">
+     			<button class="btn btn-primary" ng-click="vm.goWeather('San Diego')">San Diego</button>
+     			<button class="btn btn-primary" ng-click="vm.goWeather('New York')">Newy York</button>
+     			<button class="btn btn-primary" ng-click="vm.goWeather('Washington')">Washington D.C </button>
+     			<button class="btn btn-primary" ng-click="vm.goWeather('London')">London</button>
+     			<button class="btn btn-primary" ng-click="vm.goWeather('Tokyo')">Tokyo</button>
+     			<button class="btn btn-primary" ng-click="vm.goWeather('Kabul')">Kabul</button>
+     		</div>
+     	</div>
+
+     	<div class="input-group">
+     		<input type="text" class="form-control" ng-model="vm.searchPlace">
+     		<span class="input-group-addon bt btn-primary"  ng-click="vm.goWeather(vm.searchPlace)"> Go!</span>             
+     	</div>
+
+
+     	<div class="row">
+     		<div class="col-md-6">
+     			<div class="panel panel-info ng-hide" ng-hide="true" ng-show="vm.hideNseek">
+     				<div class="panel-heading">
+     					<p> City Information</p>
+     				</div>
+     				<div class="panel-body  ">
+     					<div class="text-center ">	
+     						<h1 > {{vm.name}}</h1>
+     						<img ng-src="http://openweathermap.org/img/w/{{vm.icon}}.png">
+     						<p> {{vm.lat}}, {{vm.lon}}</p>
+     					</div>
+     					<legend class="row"></legend>
+     					<div class="">
+     						<div class="col-md-4">
+     							<label>Temperature (F)</label>
+     							<p>{{vm.temp}}</p>
+     						</div>
+     						<div class="col-md-4">
+     							<label>Pressure</label>
+     							<p>{{vm.pressure}}</p>
+     						</div>	
+     						<div class="col-md-4">
+     							<label>Humidity</label>
+     							<p ng-mode="vm.humidity">{{vm.humidity}}</p>
+     						</div>
+     					</div>
+     					<div class="row">
+     						<div class="col-md-4">
+     							<label>Lowest Temp (F)</label>
+     							<p> {{vm.minTemp}}</p>
+     						</div>
+     						<div class="col-md-4">
+     							<label>Highest Temp (F)</label>
+     							<p>{{vm.maxTemp}}</p>
+     						</div>	
+     						<div class="col-md-4">
+     							<label>Wind Speed</label>
+     							<p>{{vm.windSpeed}}</p>
+     						</div>
+     					</div>	
+
+
+
+     				</div>
+
+
+     			</div>
+     		</div>
+
+     		<div class="col-md-6">
+     			<div class="panel panel-info">
+     				<div class="panel-heading">
+     					<p>Search History</p>
+     				</div>
+     				<div class="panel-body">
+     					<table class="col-md-12 table table-striped"   ng-click="vm.goWeather(vm.searchPlace)">
+     						<tr ng-repeat="history in vm.historyList" >
+     							<td >{{history.name}}</td>
+     							<td> {{history.timeAndDate}}</td>
+     						</tr>
+     					</table>
+
+     				</div>
+
+     			</div>
+     		</div>
+     	</div>	
+     </div>		
+
+ <!-- bower:js -->
+ <script src="bower_components/angular/angular.js"></script>
+ <script src="bower_components/jquery/dist/jquery.js"></script>
+ <!-- endbower -->
+ <!-- inject:js -->
+ <script src="/app/app.js"></script>
+ <script src="/app/weather.controller.js"></script>
+ <script src="/app/weather.factory.js"></script>
+ <!-- endinject -->
+ <script src="/app/weather.controller.js"></script>
+ <script src="/app/weather.factory.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr.css">
+<script type="text/javascript" src="bower_components/angular-toastr.tpls.js"></script>
+
+</body>
+</html>
