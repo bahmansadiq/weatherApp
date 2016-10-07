@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('WeatherApp', []);
+        .module('WeatherApp', ['toastr']);
 })();
