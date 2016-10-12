@@ -13,7 +13,7 @@
 	<!-- endinject -->
 </head>
 
-
+<!--using controllerAs feature instead of $scope -->
 <body ng-controller="WeatherController as vm">
      <div class="container  ng-cloak">
      	<div class="col-md-12 jumbotron">
@@ -21,6 +21,7 @@
      		<p>Always know if you need an umbrella!</p>
      	</div>
      	<div class="">
+<!--to make all the buttons  -->          
      		<div class="btn-group">
      			<button class="btn btn-primary" ng-click="vm.goWeather('San Diego')">San Diego</button>
      			<button class="btn btn-primary" ng-click="vm.goWeather('New York')">Newy York</button>
