@@ -4,12 +4,11 @@
     angular
         .module('WeatherApp')
         .factory('weatherFactory', weatherFactory);
-
+/* @ngInject */
     weatherFactory.$inject = ['$http','$q'];
 
-
-    /* @ngInject */
     function weatherFactory($http, $q) {
+    // declaring the function insdie the factory
         var service = {
             getWeather: getWeather
         };
@@ -21,7 +20,7 @@
         function getWeather(searchPlace) {
 
            var defer = $q.defer();
-
+    // pull the data using $http        
            $http({
                method: 'GET',
                url: 'http://api.openweathermap.org/data/2.5/weather',
@@ -30,22 +29,25 @@
                    q: searchPlace
                }
            })
+    // after you get the dtat store it in  response        
            .then(
                function(response){
+      // conditiong to check if response is an object          
                    if(typeof response.data === 'object'){
+     // if it is an object then resolve               
                        defer.resolve(response);
 
-
+      //otherwise reject it
                    } else {
                        defer.reject(response);
                    }
                },
-               // failure
+      // if failed to load the data at all
                function(error) {
                    defer.reject(error);
 
                });
-
+      // return back with defer.promise if if the response is succesfuly an object      
                return defer.promise;
            }
 

@@ -1,3 +1,6 @@
+/*prevent the Angular html template from being briefly displayed by the browser in its raw 
+form while your application is loading
+*/
 .ng-cloak{
 	display: none;
 }
